@@ -42,7 +42,7 @@ contract TopoToken3D is ERC721, ERC721Enumerable, ERC721URIStorage, Pausable, Ac
 
 //@dev: sets up the baseURI for minting- in our case connect this with the Skale Storage
     function _baseURI() internal pure override returns (string memory) {
-        return "'INSERT SKALE STORAGE'";
+        return "ipfs://";
     }
 
 //@dev:override ERC721, ERC721Enumerable before Token Transfer
