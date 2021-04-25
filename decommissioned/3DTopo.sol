@@ -54,7 +54,7 @@ contract TopoToken3D is ERC721, ERC721Enumerable, ERC721URIStorage, Pausable, Ac
         super._beforeTokenTransfer(from, to, tokenId);
     }
 
-//@dev: burn a token with a parrticular Id.
+//@dev: burn a token with a particular Id.
     function _burn(uint256 tokenId) internal override(ERC721, ERC721URIStorage) {
         super._burn(tokenId);
     }
