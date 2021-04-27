@@ -1,0 +1,88 @@
+{
+  "Uuid": "bc015fe2-8d9a-4375-ac58-6febac17ce95",
+  "IsCustomNode": false,
+  "Description": null,
+  "Name": "Python_Minting",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "NodeType": "PythonScriptNode",
+      "Code": "\r\n\r\n#refer to credentials.MD for public test ethereum addrsses\r\n#double check that this is my infura.\r\n#double check that all addresses are written with capitals so they CheckSum\r\n\r\ncontract_address = \"0xCb32C5E0D5ea5dEc1d6D5B2624eEEc35b8cf302c\" #contract owned by ArchChainONE\r\nwallet_address = \"0x59DcC1e1B1F43BaD14DA3b8040995677d6fc923E\"\r\naddress = \"0x59DcC1e1B1F43BaD14DA3b8040995677d6fc923E\"\r\nwallet_private_key = \"2366b847b1452a873139138443b88957f084e4add05f00d3074497ed404db0d0\"\r\ninfura_url = \"https://ropsten.infura.io/v3/029c7ec526724b59b345469899f0dd9e\" #Theo's infura Node\r\n\r\n#infura_url = \"https://ropsten.infura.io/v3/bc0151acb1204cacadd049ab3ac000eb\" #Wassim's infura node\r\n\r\n#@dev: entries to use with the anaconda python inside blender/dynamo/Grrasshopper\r\n#@dev: testt initially without topologic, jusst send a strring to be minted,\r\n#@dev:use double \\\\ in the windows path so that python does not throw an error in reading the string for the path\r\npath = \"C:\\\\Users\\\\calys\\\\anaconda3\\\\envs\\\\Dynamo383\\\\Lib\\\\site-packages\" #enter your web3 location here\r\n#['', '/opt/anaconda3/lib/python38.zip', '/opt/anaconda3/lib/python3.8', '/opt/anaconda3/lib/python3.8/lib-dynload', '/opt/anaconda3/lib/python3.8/site-packages', '/opt/anaconda3/lib/python3.8/site-packages/aeosa']\r\n\r\ncontract_abi =  \"[{\\\"inputs\\\":[],\\\"stateMutability\\\":\\\"nonpayable\\\",\\\"type\\\":\\\"constructor\\\"},{\\\"anonymous\\\":false,\\\"inputs\\\":[{\\\"indexed\\\":true,\\\"internalType\\\":\\\"address\\\",\\\"name\\\":\\\"owner\\\",\\\"type\\\":\\\"address\\\"},{\\\"indexed\\\":true,\\\"internalType\\\":\\\"address\\\",\\\"name\\\":\\\"approved\\\",\\\"type\\\":\\\"address\\\"},{\\\"indexed\\\":true,\\\"internalType\\\":\\\"uint256\\\",\\\"name\\\":\\\"tokenId\\\",\\\"type\\\":\\\"uint256\\\"}],\\\"name\\\":\\\"Approval\\\",\\\"type\\\":\\\"event\\\"},{\\\"anonymous\\\":false,\\\"inputs\\\":[{\\\"indexed\\\":true,\\\"internalType\\\":\\\"address\\\",\\\"name\\\":\\\"owner\\\",\\\"type\\\":\\\"address\\\"},{\\\"indexed\\\":true,\\\"internalType\\\":\\\"address\\\",\\\"name\\\":\\\"operator\\\",\\\"type\\\":\\\"address\\\"},{\\\"indexed\\\":false,\\\"internalType\\\":\\\"bool\\\",\\\"name\\\":\\\"approved\\\",\\\"type\\\":\\\"bool\\\"}],\\\"name\\\":\\\"ApprovalForAll\\\",\\\"type\\\":\\\"event\\\"},{\\\"anonymous\\\":false,\\\"inputs\\\":[{\\\"indexed\\\":true,\\\"internalType\\\":\\\"address\\\",\\\"name\\\":\\\"previousOwner\\\",\\\"type\\\":\\\"address\\\"},{\\\"indexed\\\":true,\\\"internalType\\\":\\\"address\\\",\\\"name\\\":\\\"newOwner\\\",\\\"type\\\":\\\"address\\\"}],\\\"name\\\":\\\"OwnershipTransferred\\\",\\\"type\\\":\\\"event\\\"},{\\\"anonymous\\\":false,\\\"inputs\\\":[{\\\"indexed\\\":true,\\\"internalType\\\":\\\"address\\\",\\\"name\\\":\\\"from\\\",\\\"type\\\":\\\"address\\\"},{\\\"indexed\\\":true,\\\"internalType\\\":\\\"address\\\",\\\"name\\\":\\\"to\\\",\\\"type\\\":\\\"address\\\"},{\\\"indexed\\\":true,\\\"internalType\\\":\\\"uint256\\\",\\\"name\\\":\\\"tokenId\\\",\\\"type\\\":\\\"uint256\\\"}],\\\"name\\\":\\\"Transfer\\\",\\\"type\\\":\\\"event\\\"},{\\\"inputs\\\":[{\\\"internalType\\\":\\\"address\\\",\\\"name\\\":\\\"to\\\",\\\"type\\\":\\\"address\\\"},{\\\"internalType\\\":\\\"uint256\\\",\\\"name\\\":\\\"tokenId\\\",\\\"type\\\":\\\"uint256\\\"}],\\\"name\\\":\\\"approve\\\",\\\"outputs\\\":[],\\\"stateMutability\\\":\\\"nonpayable\\\",\\\"type\\\":\\\"function\\\"},{\\\"inputs\\\":[{\\\"internalType\\\":\\\"address\\\",\\\"name\\\":\\\"owner\\\",\\\"type\\\":\\\"address\\\"}],\\\"name\\\":\\\"balanceOf\\\",\\\"outputs\\\":[{\\\"internalType\\\":\\\"uint256\\\",\\\"name\\\":\\\"\\\",\\\"type\\\":\\\"uint256\\\"}],\\\"stateMutability\\\":\\\"view\\\",\\\"type\\\":\\\"function\\\"},{\\\"inputs\\\":[],\\\"name\\\":\\\"baseURI\\\",\\\"outputs\\\":[{\\\"internalType\\\":\\\"string\\\",\\\"name\\\":\\\"\\\",\\\"type\\\":\\\"string\\\"}],\\\"stateMutability\\\":\\\"view\\\",\\\"type\\\":\\\"function\\\"},{\\\"inputs\\\":[{\\\"internalType\\\":\\\"uint256\\\",\\\"name\\\":\\\"tokenId\\\",\\\"type\\\":\\\"uint256\\\"}],\\\"name\\\":\\\"getApproved\\\",\\\"outputs\\\":[{\\\"internalType\\\":\\\"address\\\",\\\"name\\\":\\\"\\\",\\\"type\\\":\\\"address\\\"}],\\\"stateMutability\\\":\\\"view\\\",\\\"type\\\":\\\"function\\\"},{\\\"inputs\\\":[{\\\"internalType\\\":\\\"address\\\",\\\"name\\\":\\\"owner\\\",\\\"type\\\":\\\"address\\\"},{\\\"internalType\\\":\\\"address\\\",\\\"name\\\":\\\"operator\\\",\\\"type\\\":\\\"address\\\"}],\\\"name\\\":\\\"isApprovedForAll\\\",\\\"outputs\\\":[{\\\"internalType\\\":\\\"bool\\\",\\\"name\\\":\\\"\\\",\\\"type\\\":\\\"bool\\\"}],\\\"stateMutability\\\":\\\"view\\\",\\\"type\\\":\\\"function\\\"},{\\\"inputs\\\":[{\\\"internalType\\\":\\\"address\\\",\\\"name\\\":\\\"recipient\\\",\\\"type\\\":\\\"address\\\"},{\\\"internalType\\\":\\\"string\\\",\\\"name\\\":\\\"tokenURI\\\",\\\"type\\\":\\\"string\\\"}],\\\"name\\\":\\\"mintNFT\\\",\\\"outputs\\\":[{\\\"internalType\\\":\\\"uint256\\\",\\\"name\\\":\\\"\\\",\\\"type\\\":\\\"uint256\\\"}],\\\"stateMutability\\\":\\\"nonpayable\\\",\\\"type\\\":\\\"function\\\"},{\\\"inputs\\\":[],\\\"name\\\":\\\"name\\\",\\\"outputs\\\":[{\\\"internalType\\\":\\\"string\\\",\\\"name\\\":\\\"\\\",\\\"type\\\":\\\"string\\\"}],\\\"stateMutability\\\":\\\"view\\\",\\\"type\\\":\\\"function\\\"},{\\\"inputs\\\":[],\\\"name\\\":\\\"owner\\\",\\\"outputs\\\":[{\\\"internalType\\\":\\\"address\\\",\\\"name\\\":\\\"\\\",\\\"type\\\":\\\"address\\\"}],\\\"stateMutability\\\":\\\"view\\\",\\\"type\\\":\\\"function\\\"},{\\\"inputs\\\":[{\\\"internalType\\\":\\\"uint256\\\",\\\"name\\\":\\\"tokenId\\\",\\\"type\\\":\\\"uint256\\\"}],\\\"name\\\":\\\"ownerOf\\\",\\\"outputs\\\":[{\\\"internalType\\\":\\\"address\\\",\\\"name\\\":\\\"\\\",\\\"type\\\":\\\"address\\\"}],\\\"stateMutability\\\":\\\"view\\\",\\\"type\\\":\\\"function\\\"},{\\\"inputs\\\":[],\\\"name\\\":\\\"renounceOwnership\\\",\\\"outputs\\\":[],\\\"stateMutability\\\":\\\"nonpayable\\\",\\\"type\\\":\\\"function\\\"},{\\\"inputs\\\":[{\\\"internalType\\\":\\\"address\\\",\\\"name\\\":\\\"from\\\",\\\"type\\\":\\\"address\\\"},{\\\"internalType\\\":\\\"address\\\",\\\"name\\\":\\\"to\\\",\\\"type\\\":\\\"address\\\"},{\\\"internalType\\\":\\\"uint256\\\",\\\"name\\\":\\\"tokenId\\\",\\\"type\\\":\\\"uint256\\\"}],\\\"name\\\":\\\"safeTransferFrom\\\",\\\"outputs\\\":[],\\\"stateMutability\\\":\\\"nonpayable\\\",\\\"type\\\":\\\"function\\\"},{\\\"inputs\\\":[{\\\"internalType\\\":\\\"address\\\",\\\"name\\\":\\\"from\\\",\\\"type\\\":\\\"address\\\"},{\\\"internalType\\\":\\\"address\\\",\\\"name\\\":\\\"to\\\",\\\"type\\\":\\\"address\\\"},{\\\"internalType\\\":\\\"uint256\\\",\\\"name\\\":\\\"tokenId\\\",\\\"type\\\":\\\"uint256\\\"},{\\\"internalType\\\":\\\"bytes\\\",\\\"name\\\":\\\"_data\\\",\\\"type\\\":\\\"bytes\\\"}],\\\"name\\\":\\\"safeTransferFrom\\\",\\\"outputs\\\":[],\\\"stateMutability\\\":\\\"nonpayable\\\",\\\"type\\\":\\\"function\\\"},{\\\"inputs\\\":[{\\\"internalType\\\":\\\"address\\\",\\\"name\\\":\\\"operator\\\",\\\"type\\\":\\\"address\\\"},{\\\"internalType\\\":\\\"bool\\\",\\\"name\\\":\\\"approved\\\",\\\"type\\\":\\\"bool\\\"}],\\\"name\\\":\\\"setApprovalForAll\\\",\\\"outputs\\\":[],\\\"stateMutability\\\":\\\"nonpayable\\\",\\\"type\\\":\\\"function\\\"},{\\\"inputs\\\":[{\\\"internalType\\\":\\\"bytes4\\\",\\\"name\\\":\\\"interfaceId\\\",\\\"type\\\":\\\"bytes4\\\"}],\\\"name\\\":\\\"supportsInterface\\\",\\\"outputs\\\":[{\\\"internalType\\\":\\\"bool\\\",\\\"name\\\":\\\"\\\",\\\"type\\\":\\\"bool\\\"}],\\\"stateMutability\\\":\\\"view\\\",\\\"type\\\":\\\"function\\\"},{\\\"inputs\\\":[],\\\"name\\\":\\\"symbol\\\",\\\"outputs\\\":[{\\\"internalType\\\":\\\"string\\\",\\\"name\\\":\\\"\\\",\\\"type\\\":\\\"string\\\"}],\\\"stateMutability\\\":\\\"view\\\",\\\"type\\\":\\\"function\\\"},{\\\"inputs\\\":[{\\\"internalType\\\":\\\"uint256\\\",\\\"name\\\":\\\"index\\\",\\\"type\\\":\\\"uint256\\\"}],\\\"name\\\":\\\"tokenByIndex\\\",\\\"outputs\\\":[{\\\"internalType\\\":\\\"uint256\\\",\\\"name\\\":\\\"\\\",\\\"type\\\":\\\"uint256\\\"}],\\\"stateMutability\\\":\\\"view\\\",\\\"type\\\":\\\"function\\\"},{\\\"inputs\\\":[{\\\"internalType\\\":\\\"address\\\",\\\"name\\\":\\\"owner\\\",\\\"type\\\":\\\"address\\\"},{\\\"internalType\\\":\\\"uint256\\\",\\\"name\\\":\\\"index\\\",\\\"type\\\":\\\"uint256\\\"}],\\\"name\\\":\\\"tokenOfOwnerByIndex\\\",\\\"outputs\\\":[{\\\"internalType\\\":\\\"uint256\\\",\\\"name\\\":\\\"\\\",\\\"type\\\":\\\"uint256\\\"}],\\\"stateMutability\\\":\\\"view\\\",\\\"type\\\":\\\"function\\\"},{\\\"inputs\\\":[{\\\"internalType\\\":\\\"uint256\\\",\\\"name\\\":\\\"tokenId\\\",\\\"type\\\":\\\"uint256\\\"}],\\\"name\\\":\\\"tokenURI\\\",\\\"outputs\\\":[{\\\"internalType\\\":\\\"string\\\",\\\"name\\\":\\\"\\\",\\\"type\\\":\\\"string\\\"}],\\\"stateMutability\\\":\\\"view\\\",\\\"type\\\":\\\"function\\\"},{\\\"inputs\\\":[],\\\"name\\\":\\\"totalSupply\\\",\\\"outputs\\\":[{\\\"internalType\\\":\\\"uint256\\\",\\\"name\\\":\\\"\\\",\\\"type\\\":\\\"uint256\\\"}],\\\"stateMutability\\\":\\\"view\\\",\\\"type\\\":\\\"function\\\"},{\\\"inputs\\\":[{\\\"internalType\\\":\\\"address\\\",\\\"name\\\":\\\"from\\\",\\\"type\\\":\\\"address\\\"},{\\\"internalType\\\":\\\"address\\\",\\\"name\\\":\\\"to\\\",\\\"type\\\":\\\"address\\\"},{\\\"internalType\\\":\\\"uint256\\\",\\\"name\\\":\\\"tokenId\\\",\\\"type\\\":\\\"uint256\\\"}],\\\"name\\\":\\\"transferFrom\\\",\\\"outputs\\\":[],\\\"stateMutability\\\":\\\"nonpayable\\\",\\\"type\\\":\\\"function\\\"},{\\\"inputs\\\":[{\\\"internalType\\\":\\\"address\\\",\\\"name\\\":\\\"newOwner\\\",\\\"type\\\":\\\"address\\\"}],\\\"name\\\":\\\"transferOwnership\\\",\\\"outputs\\\":[],\\\"stateMutability\\\":\\\"nonpayable\\\",\\\"type\\\":\\\"function\\\"}]\"\r\n\r\n\r\n\r\nimport time\r\nimport sys\r\nsys.path.append(path)\r\nfrom web3 import Web3, HTTPProvider\r\n\r\n\r\n#from topologic import Vertex, Topology\r\n#import cppyy\r\n\r\n#v = Vertex.ByCoordinates(10,20,30)\r\nstring = str('2nd Research Workshop in Blockchain in Construction 2021')\r\nw3 = Web3(HTTPProvider(infura_url))\r\n\r\n\r\nsmartContract = w3.eth.contract(address=contract_address, abi=contract_abi)\r\n\r\nreceipts = []\r\n\r\n#the next function calls mints the NFT\r\nnonce = w3.eth.get_transaction_count(wallet_address)\r\ntx_dict = smartContract.functions.mintNFT(address, string).buildTransaction({\r\n    'chainId' : 3,\r\n    'gas' : 2100000,  #some of this was throwing errors, double check gas amounts.\r\n    'gasPrice' : w3.toWei('50', 'gwei'),\r\n    'nonce' : nonce,\r\n})\r\n\r\n\r\n\r\nsigned_tx = w3.eth.account.sign_transaction(tx_dict, wallet_private_key)\r\ntx_hash = w3.eth.send_raw_transaction(signed_tx.rawTransaction)\r\ntx_receipt = w3.eth.waitForTransactionReceipt(tx_hash, timeout=120, poll_latency=0.1)\r\nreceipts.append(tx_receipt)\r\n\r\n\r\n\r\noutputList = []\r\nfor tx_receipt in receipts:\r\n    receipt = []\r\n    receipt.append('blockHash: '+str(tx_receipt['blockHash']))\r\n    receipt.append('blockNumber: '+str(tx_receipt['blockNumber']))\r\n    receipt.append('contractAddress: '+str(tx_receipt['contractAddress']))\r\n    receipt.append('cumulativeGasUsed: '+str(tx_receipt['cumulativeGasUsed']))\r\n    receipt.append('from: '+str(tx_receipt['from']))\r\n    receipt.append('gasUsed: '+str(tx_receipt['gasUsed']))\r\n    receipt.append('logs: '+str(tx_receipt['logs']))\r\n    receipt.append('to: '+str(tx_receipt['to']))\r\n    receipt.append('transactionHash: '+str(tx_receipt['transactionHash']))\r\n    receipt.append('tansactionIndex: '+str(tx_receipt['transactionIndex']))\r\n    outputList.append(receipt)\r\n\r\n\r\n\r\nprint(outputList)\r\n",
+      "Engine": "CPython3",
+      "VariableInputPorts": true,
+      "Id": "a060f1a4b2754478b4ba365aa885bc2c",
+      "Inputs": [
+        {
+          "Id": "14cdd2bdf5524b659078934d43d0c71e",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "c02381014b544bc2be6c0d445441aeec",
+          "Name": "OUT",
+          "Description": "Result of the python script",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Runs an embedded Python script."
+    }
+  ],
+  "Connectors": [],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "ExtensionWorkspaceData": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.11.0.4533",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "Python Script",
+        "Id": "a060f1a4b2754478b4ba365aa885bc2c",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 536.0,
+        "Y": 384.0
+      }
+    ],
+    "Annotations": [],
+    "X": -245.82891760608027,
+    "Y": -44.021162153563353,
+    "Zoom": 1.130842140625
+  }
+}
