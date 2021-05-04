@@ -15,7 +15,7 @@ import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/release-v3.4
 import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/release-v3.4/contracts/access/AccessControl.sol";
 
 
-//for testing with brownie - uncomment these lines to run with a local framework
+//for testing with truffle/brownie - uncomment these lines to run with a local framework
 //import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 //import "@openzeppelin/contracts/token/ERC721/ERC721Burnable.sol";
 //import "@openzeppelin/contracts/utils/Pausable.sol";
@@ -33,6 +33,7 @@ contract TopoToken is ERC721, ERC721Burnable, Pausable, AccessControl {
     Counters.Counter private _tokenIds;
 
 //@dev: sets up three roles: admin, pauser (for security) and minter
+//@dev:admin is also the owner
     constructor() public ERC721("TopoToken", "TPK")
     {
       _setupRole(DEFAULT_ADMIN_ROLE, msg.sender);
