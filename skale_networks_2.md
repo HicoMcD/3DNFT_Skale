@@ -13,6 +13,9 @@ https://eth-global-10.skalenodes.com:10648
 https://eth-global-11.skalenodes.com:10008
 https://eth-global-5.skalenodes.com:10008
 https://eth-global-9.skalenodes.com:10648
+
+
+
 ws://eth-global-10.skalenodes.com:10642
 ws://eth-global-11.skalenodes.com:10002
 ws://eth-global-5.skalenodes.com:10002
