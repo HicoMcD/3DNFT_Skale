@@ -6,11 +6,11 @@ skale_url = "http://eth-global-10.skalenodes.com:10259" #Skale Node inserted her
 
 #@dev: entries to use with the anaconda python inside blender/dynamo/Grrasshopper
 
-path = "~/Downloads/blender-2.92.0-linux64/2.92/python/lib/python3.7/site-package" #Ubuntu
+path = "~/Downloads/blender-2.92.0-linux64/2.92/python/lib/python3.7/site-package" # #enter your web3 location here - This is the Linux version (H1c0)
 #path = "/opt/anaconda3/lib/python3.8/site-packages" #enter your web3 location here - This is the macosx version
 #path = "c:\\Users\\calys\\anaconda3\\envs\\Dynamo383\\Lib\\site-packages" #enter your web3 location here - This is the windows version
 
-
+#@dev: change the abi to one liner-
 contract_abi =  [
     {
       "inputs": [],
